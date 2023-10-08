@@ -30,8 +30,8 @@ function ProductsCard({ productss }) {
                         <div className='flex gap-2 transform group-hover:translate-x-24 transition-transform duration-500'>
                             <p className='font-semibold '>DH{productss.prix}</p>
                         </div>    
-                        <p className='absolute z-20 w-[100px] text-gray-500 hover:text-gray-900 flex items-center gap-1 top-0 transform -translate-x-32 group-hover:translate-x-0 transition-transform cursor-pointer duration-500'>add to cart <span><BsArrowRight/></span></p>          
-                    </div>
+                        <p className='absolute z-20 w-[100px] text-gray-500 hover:text-gray-900 flex items-center gap-1 top-0 transform -translate-x-32 group-hover:translate-x-0 transition-transform cursor-pointer duration-500' >add to cart <span><BsArrowRight/></span></p>          
+                  </div>
                 </div>
                 <div>
                     <p>{productss.souscategorie.nom}</p>

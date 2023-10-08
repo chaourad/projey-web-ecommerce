@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import {HiOutlineArrowLeft} from "react-icons/hi"
 function CartItem() {
   const [cartproduct, setCartproduct] = useState([]);
-  const[totalAmount , setTotalAmount] = useState("");
 
   useEffect(() => {
     axios.get('http://localhost:8081/api/v1/cartProducts/all')
@@ -13,15 +12,13 @@ function CartItem() {
         console.log(response.data)
         setCartproduct(response.data)
       });
-   
-
   }, [])
   return (
     <div className="w-2/3 pr-10">
       <div className="w-full">
         <h2 className="text-2xl">shopping cart</h2>
       </div> {cartproduct.map((item) => (
-        <div className="flex items-center justify-between gap-6 mt-6">
+        <div className="flex items-center justify-between gap-6 mt-6" key={item.id}>
           <div key={item.cartId} className="flex gap-2 items-center">
             <MdOutlineClose className="text-xl text-gray-600 hover:text-red-500 cursor-pointer duration-300" />
             <img src={item.produit.image} alt={item.produit.title} className="w-32 h-32 object-cover" />
@@ -53,7 +50,7 @@ function CartItem() {
       </Link>
     </div>
     
-  )
+  );
 }
 
 export default CartItem

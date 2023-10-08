@@ -1,14 +1,9 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import { useState } from "react";
-
-import {
-  FacebookLoginButton,
-  GoogleLoginButton
-} from "react-social-login-buttons";
+import {FacebookLoginButton, GoogleLoginButton } from "react-social-login-buttons";
 import { Link, useNavigate } from 'react-router-dom';
 import logo from "../assets/logo.jpg"
-import googlelogo from "../assets/googlelogo.png"
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,14 +30,16 @@ function Login() {
 
       // Assuming the backend sends a JWT token upon successful login
       const token = response.data.access_token;
+     
       // You can store the token in local storage or a cookie for future authenticated requests
       localStorage.setItem("token", token);
+   
+
       //console.log("ok");
       // Check the user's role in the token payload
       const tokenPayload = jwtDecode(token);
       // console.log("ok2");
-      console.log(tokenPayload);
-
+      localStorage.setItem("userId", tokenPayload.userId);
       if (tokenPayload.role.includes("admin:create") ||
         tokenPayload.role.includes("admin:update") ||
         tokenPayload.role.includes("admin:delete") ||
@@ -52,11 +49,13 @@ function Login() {
         navigate('/dashboard')
       } else if (tokenPayload.role.includes('ROLE_USER')) {
 
-        console.log("ok");
+        navigate('/user/index')
+
       } else {
         // Redirect to the regular user dashboard
         navigate('/'); // Replace with your user dashboard URL
       }
+   
     } catch (err) {
       setError("Invalid email or password. Please try again.");
     }

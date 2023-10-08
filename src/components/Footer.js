@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import paymentCard from "../assets/payment.png"
-import { FaFacebook, FaYoutube, FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaFacebook,  FaLinkedin, FaGithub } from "react-icons/fa";
 import FooterListTitle from './FooterListTitle';
 import { motion } from "framer-motion";
 
@@ -152,6 +152,7 @@ const Footer = () => {
               className={`w-[80%] lg:w-[60%] mx-auto ${
                 subscription ? "mt-2" : "mt-6"
               }`}
+              alt="paymentCard"
               src={paymentCard}
             />
           </div>

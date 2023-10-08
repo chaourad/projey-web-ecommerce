@@ -1,7 +1,5 @@
 import React from "react";
 import logo from "../assets/logo.jpg";
-import cartShop from "../assets/cartdShop.png";
-import user from "../assets/user.png";
 import { Link } from "react-router-dom";
 import { AiOutlineHeart, AiOutlineUser } from "react-icons/ai";
 import { BsCart } from "react-icons/bs"

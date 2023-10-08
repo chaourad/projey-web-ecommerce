@@ -1,6 +1,7 @@
 import React from 'react'
 import { TiVolumeUp } from "react-icons/ti";
 import CartItem from '../components/CartItem';
+import { Link } from 'react-router-dom';
 function Cart(props) {
   //if the user is not connect we show this pages
   return (
@@ -33,8 +34,11 @@ function Cart(props) {
             <span className='font-bold text-s'>
               MAD 200
             </span>
-          </p>   
+          </p>  
+          <Link to="/paymentgateway">
+ 
           <button className='text-base text-white w-full hover:bg-gray-800 bg-black py-3 mt-6 duration-300 '>proceed to checkout</button>
+        </Link>
         </div>
 
       

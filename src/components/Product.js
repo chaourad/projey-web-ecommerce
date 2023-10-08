@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import {MdOutlineStar} from "react-icons/md"
+
 function Product() {
     const [details , setDetails] = useState({});
     const [categorie , setCategorie] = useState(null);
