@@ -5,10 +5,17 @@ import axios from 'axios';
 function Products() {
     const [product , setProduct]= useState([]);
     useEffect(()=>{
-     axios.get("http://localhost:8081/api/v1/product/all").then((response)=>{
-     setProduct(response.data);
-     });
+      getData();
     },[]);
+    async function getData() {
+      try {
+        const response = await axios.get("http://localhost:8081/api/v1/product/all");
+        setProduct(response.data);
+      } catch (error) {
+        console.error("Une erreur s'est produite lors de la récupération des données :", error);
+      }
+    }
+    
       return (
     <div className='py-10'>
         <div className=' flex flex-col items-center gap-4'>

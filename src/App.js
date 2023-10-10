@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {  useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Outlet } from 'react-router-dom';
 
 import Header from './components/Header';
@@ -24,8 +24,11 @@ import ProductsAd from './components/admin/ProductsAd';
 import Categories from './components/admin/Categories';
 import Commande from './components/admin/Commande';
 import LigneDesCommande from './components/admin/LigneDesCommande';
+import UserContext from './context/UserContext';
+import BasicMenu from './components/profil/Test';
 
 const Layout = () => {
+
   return (
     <div>
       <img src={quickship} className="quickship react" alt="quickship logo" />
@@ -37,6 +40,7 @@ const Layout = () => {
 };
 
 const IndexUser = () => {
+
   return (
     <div>
       <img src={quickship} className="quickship react" alt="quickship logo" />
@@ -50,6 +54,7 @@ const IndexUser = () => {
   );
 };
 const Admin= ()=>{
+
   return (
 <div className='flex flex-row'>
   <SideBar/>
@@ -60,7 +65,22 @@ const Admin= ()=>{
 }
 
 function App() {
+  const storedUser = {
+    isLogged: localStorage.getItem("isLogged") === "true",
+    userId: localStorage.getItem("userId"),
+    token: localStorage.getItem("token"),
+    role: localStorage.getItem("role"),
+  };
+
+  // Utilisez ces données pour initialiser le contexte utilisateur
+  const [user, setUser] = useState(storedUser);
+
+  // Utilisez ces données pour initialiser le contexte utilisateur
+ 
+
+ 
   return (
+    <UserContext.Provider value={{ user, setUser  }}>
     <div className="font-bodyFont">
       <Router>
         <Routes>
@@ -72,7 +92,6 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="product" element={<ProductPage />} />
-            <Route path="favorite" element={<Favorite />} />
             <Route path="paymentgateway" element={<Paymentgateway />} />
           </Route>
                 {/*-------------*/}
@@ -80,7 +99,10 @@ function App() {
             <Route path="addressbook" element={<AddressComponent />} />
             <Route path="security" element={<SecurityComponent />} />
             <Route path="return-policy" element={<ReturnPolicy />} />
+            <Route path="favorite" element={<Favorite />} />
             <Route path="shippin-info" element={<Shippinginfo />} />
+            <Route path="menu" element={<BasicMenu />} />
+
           </Route>
           {/*-------------*/}
           <Route path="/admin" element={<Admin />}>
@@ -97,6 +119,8 @@ function App() {
         </Routes>
       </Router>
     </div>
+    </UserContext.Provider >
+
   );
 }
 

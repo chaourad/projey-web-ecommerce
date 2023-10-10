@@ -36,7 +36,7 @@ function Header() {
               Blog
             </li>
           </ul>
-          <Link to="/favorite">
+          <Link to="/user/favorite">
             <AiOutlineHeart className=" w-6 h-6 rounded-full" />
           </Link>
           <Link to="/cart">

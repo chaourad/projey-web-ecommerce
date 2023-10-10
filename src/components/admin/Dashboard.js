@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import UserContext from '../../context/UserContext';
 
 function Dashboard() {
+    const {user} = useContext(UserContext);
+    if(user.role ==="admin:create" ||user.role ==="admin:update" ||
+    user.role ==="admin:delete" ||user.role ==="admin:read"   ){
+        
+    }
   return (
     <div className="ml-[70px] md:ml-[250px] py-5 px-5 w-full text-gray-300 space-y-5 page">
     <div className="flex flex-col sm:flex-row items-center justify-between  bg-dashBlack py-2 px-3">

@@ -1,164 +1,59 @@
-import React, { useState } from 'react'
+import React from 'react'
 import paymentCard from "../assets/payment.png"
-import { FaFacebook,  FaLinkedin, FaGithub } from "react-icons/fa";
-import FooterListTitle from './FooterListTitle';
-import { motion } from "framer-motion";
+
+import { BiLogoFacebook,BiLogoInstagram,BiLogoLinkedin } from 'react-icons/bi';
 
 const Footer = () => {
-  const [emailInfo, setEmailInfo] = useState("");
-  const [subscription, setSubscription] = useState(false);
-  const [errMsg, setErrMsg] = useState("");
-
-  const emailValidation = () => {
-    return String(emailInfo)
-      .toLocaleLowerCase()
-      .match(/^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/);
-  };
-
-  const handleSubscription = () => {
-    if (emailInfo === "") {
-      setErrMsg("Please provide an Email !");
-    } else if (!emailValidation(emailInfo)) {
-      setErrMsg("Please give a valid Email!");
-    } else {
-      setSubscription(true);
-      setErrMsg("");
-      setEmailInfo("");
-    }
-  };
   return (
-    <div className="w-full bg-gray-600 py-20">
-      <div className="max-w-container mx-auto grid grid-cols-1 md:grid-cols-2  xl:grid-cols-6 px-4 gap-10">
-        <div className="col-span-2">
-          <FooterListTitle title=" More about Orebi Shop" />
-          <div className="flex flex-col gap-6">
-            <p className="text-base w-full xl:w-[80%]">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim sint
-              ab ullam, numquam nesciunt in.
-            </p>
-            <ul className="flex items-center gap-2">
-           
-              <a
-                href="https://github.com/chaourad"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <li className="w-7 h-7 bg-primeColor text-gray-100 hover:text-white cursor-pointer text-lg rounded-full flex justify-center items-center hover:bg-black duration-300">
-                  <FaGithub />
-                </li>
-              </a>
-              <a
-                href="https://web.facebook.com/imane.chaourad/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <li className="w-7 h-7 bg-primeColor text-gray-100 hover:text-white cursor-pointer text-lg rounded-full flex justify-center items-center hover:bg-black duration-300">
-                  <FaFacebook />
-                </li>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/imane-chaourad-466819182/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <li className="w-7 h-7 bg-primeColor text-gray-100 hover:text-white cursor-pointer text-lg rounded-full flex justify-center items-center hover:bg-black duration-300">
-                  <FaLinkedin />
-                </li>
-              </a>
-            </ul>
-          </div>
-        </div>
-        <div>
-          <FooterListTitle title="Shop" />
-          <ul className="flex flex-col gap-2">
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Accesories
-            </li>
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Clothes
-            </li>
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Electronics
-            </li>
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Home appliances
-            </li>
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              New Arrivals
-            </li>
-          </ul>
-        </div>
-        <div>
-          <FooterListTitle title="Your account" />
-          <ul className="flex flex-col gap-2">
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Profile
-            </li>
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Orders
-            </li>
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Addresses
-            </li>
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Account Details
-            </li>
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Payment Options
-            </li>
-          </ul>
-        </div>
-        <div className="col-span-2 flex flex-col items-center w-full px-4">
-          <FooterListTitle title="Subscribe to our newsletter." />
-          <div className="w-full">
-            <p className="text-center mb-4">
-              A at pellentesque et mattis porta enim elementum.
-            </p>
-            {subscription ? (
-              <motion.p
-                initial={{ x: 20, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.5 }}
-                className="w-full text-center text-base font-titleFont font-semibold text-green-600"
-              >
-                Subscribed Successfully !
-              </motion.p>
-            ) : (
-              <div className="w-full flex-col xl:flex-row flex justify-between items-center gap-4">
-                <div className="flex flex-col w-full">
-                  <input
-                    onChange={(e) => setEmailInfo(e.target.value)}
-                    value={emailInfo}
-                    className="w-full h-12 border-b border-gray-400 bg-transparent px-4 text-primeColor text-lg placeholder:text-base outline-none"
-                    type="text"
-                    placeholder="Insert your email ...*"
-                  />
-                  {errMsg && (
-                    <p className="text-red-600 text-sm font-semibold font-titleFont text-center animate-bounce mt-2">
-                      {errMsg}
-                    </p>
-                  )}
-                </div>
-                <button
-                  onClick={handleSubscription}
-                  className="bg-white text-lightText w-[30%] h-10 hover:bg-black hover:text-white duration-300 text-base tracking-wide"
-                >
-                  Subscribe
-                </button>
-              </div>
-            )}
+      <div className='lg:px-20 md:px-12 px-12 mt-8 py-6 bg-[#262626]'>
+          <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-6 lg:gap-0 mt-10'>
 
-            <img
-              className={`w-[80%] lg:w-[60%] mx-auto ${
-                subscription ? "mt-2" : "mt-6"
-              }`}
-              alt="paymentCard"
-              src={paymentCard}
-            />
+               <div className='bg-[#1B1B1B] text-white py-8 px-8'>
+                  <h2 className='py-2 text-xl'>MamonDots</h2>
+                  <p className='text-[#727272d1]'>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium. At Nulla id tincidunt ut sed semper vel Lorem rnare. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.</p>
+                  <div className='flex items-center space-x-2 text-xl py-4 cursor-pointer'>
+                       <p className='hover:text-[red] duration-300'><BiLogoFacebook></BiLogoFacebook></p>
+                       <p className='hover:text-[red] duration-300'><BiLogoInstagram></BiLogoInstagram></p>
+                       <p className='hover:text-[red] duration-300'><BiLogoLinkedin></BiLogoLinkedin></p>
+                       
+                  </div>
+               </div>
+
+               <div className='bg-[#2A2A2A] text-white py-8 px-8'>
+                  <h2 className='py-2 text-lg'>CUSTOMER SERVICE</h2>
+                  <ul className='text-[#727272d1] space-y-2 py-2'>
+                      <li className='hover:text-[red] duration-300'><a href="">Contact us</a></li>
+                      <li className='hover:text-[red] duration-300'><a href="">Help and advice</a></li>
+                      <li className='hover:text-[red] duration-300'><a href="">Shipping & Returns</a></li>
+                      <li className='hover:text-[red] duration-300'><a href="">Terms and conditions</a></li>
+                      <li className='hover:text-[red] duration-300'><a href="">Refund Policy</a></li>
+                  </ul>
+                  
+               </div>
+
+               <div className='bg-[#1A1A1A] text-white py-8 px-8'>
+               <h2 className='py-2 text-lg'>INFORMATION</h2>
+                  <ul className='text-[#727272d1] space-y-2 py-2'>
+                      <li className='hover:text-[red] duration-300'><a href="">
+                      About Us</a></li>
+                      <li className='hover:text-[red] duration-300'><a href="">
+                      Testimonials</a></li>
+                      <li className='hover:text-[red] duration-300'><a href="">
+                      My Account</a></li>
+                      <li className='hover:text-[red] duration-300'><a href="">
+                      Payments & Returns</a></li>
+                      <li className='hover:text-[red] duration-300'><a href="">
+                      View Catalogues Online</a></li>
+                  </ul>
+               </div>
+
           </div>
-        </div>
+
+          <div className='flex items-center justify-center flex-col text-center mt-12'>
+               <img  src={paymentCard} alt="" />
+               <p className='text-white text-sm py-4'>Copyright © 2023 chaourad. All rights reserved.</p>
+          </div>
       </div>
-    </div>
   );
 };
 

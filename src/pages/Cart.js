@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { TiVolumeUp } from "react-icons/ti";
 import CartItem from '../components/CartItem';
 import { Link } from 'react-router-dom';
+import UserContext from "../context/UserContext";
+
 function Cart(props) {
+  const { user } = useContext(UserContext);
   //if the user is not connect we show this pages
   return (
     <>
@@ -10,9 +13,16 @@ function Cart(props) {
         <div style={{ padding: "0px 40px " }} className='flex flex-row items-center'>
           <TiVolumeUp className='ml-2 mr-2' />
           <p>Livraison en Point Relais : facilitez votre vie et faites vos achats.</p>
+        <p>ok{user.user_id}</p>
         </div>
       </div>
-      <div className='max-w-screen-xl mx-auto py-20 flex'>
+      {!user.isLogged ?(
+        <>
+        ok
+        </>
+      ):(
+        <>
+        <div className='max-w-screen-xl mx-auto py-20 flex'>
       <CartItem />
       
         <div className='w-1/3 bg-[#fafafa] py-6 px-4'>
@@ -43,6 +53,8 @@ function Cart(props) {
 
       
       </div>
+        </>
+      )}
      
 
     </>
